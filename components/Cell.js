@@ -21,6 +21,8 @@ export let isDone = (cell) => cell.status == Status.Done
 
 export let isFailed = (cell) => cell.status == Status.Failed
 
+export let isBlocking = (cell) => isOpen(cell) || isFailed(cell)
+
 // VIEW ============================================================================================
 export function View({cell, onClick}) {
   let {status, symbol} = cell
