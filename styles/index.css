@@ -1,0 +1,25 @@
+.cell {
+  font-size: 4rem;
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.cell.closed {
+  cursor: pointer;
+  background: darkgray;
+}
+
+.cell.open {
+  background: #dcdcdc;
+}
+
+.cell.done {
+  background: #a8db8f;
+}
+
+.cell.failed {
+  background: #db8f8f;
+}
