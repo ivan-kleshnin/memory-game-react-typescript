@@ -1,8 +1,10 @@
 import "../styles/reset.css"
 import "../styles/index.css"
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return <div id="root">
+    <Component {...pageProps} />
+  </div>
 }
 
-export default MyApp
+export default App

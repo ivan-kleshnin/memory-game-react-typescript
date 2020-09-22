@@ -1,3 +1,15 @@
+body {
+  overflow: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*margin-top: -50px;*/
+}
+
 .cell {
   font-size: 4rem;
   background: gray;
@@ -22,4 +34,38 @@
 
 .cell.failed {
   background: #db8f8f;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 640px;
+  height: 480px;
+  gap: 2px;
+}
+
+.screen {
+  display: flex;
+  width: 640px;
+  height: 480px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.screen.green {
+  background: #a8db8f;
+}
+
+.screen.gray {
+  background: #dcdcdc;
+}
+
+.screen.red {
+  background: #db8f8f;
+}
+
+.screen h1 {
+  font-size: 3rem;
 }

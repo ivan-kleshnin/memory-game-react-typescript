@@ -1,4 +1,5 @@
 # Folders
+ignore/
 node_modules/
 .idea/
 .next/
