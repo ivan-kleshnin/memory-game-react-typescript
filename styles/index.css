@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*margin-top: -50px;*/
+  margin-top: -25px;
 }
 
 .cell {
@@ -38,8 +38,8 @@ body {
 
 .board {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   width: 640px;
   height: 480px;
   gap: 2px;
@@ -68,4 +68,15 @@ body {
 
 .screen h1 {
   font-size: 3rem;
+}
+
+.status-line {
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+}
+
+.timer {
+  margin-bottom: 1rem;
 }
