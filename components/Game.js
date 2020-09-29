@@ -4,7 +4,7 @@ import * as Cell from "./Cell"
 import * as Board from "./Board"
 
 // LOGIC ===========================================================================================
-let Status = {
+export let Status = {
   Stopped: "Stopped",
   Running: "Running",
   Won: "Won",
@@ -116,12 +116,23 @@ export function View() {
 }
 
 function StatusLineView({status, secondsLeft}) {
-  return <div className="status-line">
-    <div>{status == Status.Running ? ":)" : "Lets Go!"}</div>
-    <div className="timer">
-      {status == Status.Running && `Seconds left: ${secondsLeft}`}
+  return <>
+    <div className="status-line">
+      <div>{status == Status.Running ? ":)" : "Lets Go!"}</div>
+      <div className="timer">
+        {status == Status.Running && `Seconds left: ${secondsLeft}`}
+      </div>
     </div>
-  </div>
+    <style jsx>{`
+      .status-line {
+        color: gray;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+    `}</style>
+  </>
 }
 
 function ScreenBoxView({status, board, onClickAt}) {
@@ -130,27 +141,35 @@ function ScreenBoxView({status, board, onClickAt}) {
       return <Board.BoardView board={board} onClickAt={onClickAt}/>
 
     case Status.Stopped:
-      return <Board.ScreenView className="gray">
-        <div>
+      return <Board.ScreenView background={statusToBackground(status)}>
+        <div style={{textAlign: "center"}}>
           <h1>Memory Game</h1>
-          <p className="small" style={{textAlign: "center"}}>Click anywhere to start!</p>
+          <p>Click anywhere to start!</p>
         </div>
       </Board.ScreenView>
 
     case Status.Won:
-      return <Board.ScreenView className="green">
-        <div>
+      return <Board.ScreenView background={statusToBackground(status)}>
+        <div style={{textAlign: "center"}}>
           <h1>Victory!</h1>
-          <p className="small" style={{textAlign: "center"}}>Click anywhere to try again!</p>
+          <p>Click anywhere to try again!</p>
         </div>
       </Board.ScreenView>
 
     case Status.Lost:
-      return <Board.ScreenView className="red">
-        <div>
+      return <Board.ScreenView background={statusToBackground(status)}>
+        <div style={{textAlign: "center"}}>
           <h1>Defeat!</h1>
-          <p className="small" style={{textAlign: "center"}}>Click anywhere to try again!</p>
+          <p>Click anywhere to try again!</p>
         </div>
       </Board.ScreenView>
+  }
+}
+
+function statusToBackground(status) {
+  switch (status) {
+    case Status.Won:  return "#a8db8f"
+    case Status.Lost: return "#db8f8f"
+    default:          return "#dcdcdc"
   }
 }
