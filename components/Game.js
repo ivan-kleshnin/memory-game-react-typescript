@@ -58,6 +58,7 @@ export function View() {
 
   let {board, status, secondsLeft} = state
 
+  // INPUT HANLDING
   function handleStartingClick(i) {
     if (status != Status.Running) {
       setState(startGame)
@@ -70,7 +71,7 @@ export function View() {
     }
   }
 
-  // Winning/Losing conditions
+  // WIN/LOSE MECHANICS
   useEffect(_ => {
     if (status == Status.Running) {
       if (hasWinningCond(state)) {
@@ -82,19 +83,20 @@ export function View() {
     }
   }, [state])
 
-  // Board handling
   useEffect(_ => {
-    if (Board.areOpensEqual(board)) {
-      setState(succeedStep)
-    } else if (Board.areOpensDifferent(board)) {
-      setState(failStep1)
-      setTimeout(_ => {
-        setState(failStep2)
-      }, 500)
+    if (status == Status.Running) {
+      if (Board.areOpensEqual(board)) {
+        setState(succeedStep)
+      } else if (Board.areOpensDifferent(board)) {
+        setState(failStep1)
+        setTimeout(_ => {
+          setState(failStep2)
+        }, 500)
+      }
     }
   }, [board])
 
-  // Timer handling
+  // TIMER
   useEffect(_ => {
     let timer = null
     if (status == Status.Running && !timer) {
