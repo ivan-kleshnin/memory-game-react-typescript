@@ -95,25 +95,25 @@ function ScreenBoxView({status, board, onClickAt}) {
 
     case Status.Stopped:
       return <Board.ScreenView className="gray">
-        <div>
+        <div style={{textAlign: "center"}}>
           <h1>Memory Game</h1>
-          <p className="small" style={{textAlign: "center"}}>Click anywhere to start!</p>
+          <p>Click anywhere to start!</p>
         </div>
       </Board.ScreenView>
 
     case Status.Won:
       return <Board.ScreenView className="green">
-        <div>
+        <div style={{textAlign: "center"}}>
           <h1>Victory!</h1>
-          <p className="small" style={{textAlign: "center"}}>Click anywhere to try again!</p>
+          <p>Click anywhere to try again!</p>
         </div>
       </Board.ScreenView>
 
     case Status.Lost:
       return <Board.ScreenView className="red">
-        <div>
+        <div style={{textAlign: "center"}}>
           <h1>Defeat!</h1>
-          <p className="small" style={{textAlign: "center"}}>Click anywhere to try again!</p>
+          <p>Click anywhere to try again!</p>
         </div>
       </Board.ScreenView>
   }
