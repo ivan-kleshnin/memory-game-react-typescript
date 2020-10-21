@@ -116,23 +116,12 @@ export function View() {
 }
 
 function StatusLineView({status, secondsLeft}) {
-  return <>
-    <div className="status-line">
-      <div>{status == Status.Running ? ":)" : "Lets Go!"}</div>
-      <div className="timer">
-        {status == Status.Running && `Seconds left: ${secondsLeft}`}
-      </div>
+  return <div className="status-line">
+    <div>{status == Status.Running ? ":)" : "Lets Go!"}</div>
+    <div className="timer">
+      {status == Status.Running && `Seconds left: ${secondsLeft}`}
     </div>
-    <style jsx>{`
-      .status-line {
-        color: gray;
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-    `}</style>
-  </>
+  </div>
 }
 
 function ScreenBoxView({status, board, onClickAt}) {
@@ -141,7 +130,7 @@ function ScreenBoxView({status, board, onClickAt}) {
       return <Board.BoardView board={board} onClickAt={onClickAt}/>
 
     case Status.Stopped:
-      return <Board.ScreenView background={statusToBackground(status)}>
+      return <Board.ScreenView className="gray">
         <div style={{textAlign: "center"}}>
           <h1>Memory Game</h1>
           <p>Click anywhere to start!</p>
@@ -149,7 +138,7 @@ function ScreenBoxView({status, board, onClickAt}) {
       </Board.ScreenView>
 
     case Status.Won:
-      return <Board.ScreenView background={statusToBackground(status)}>
+      return <Board.ScreenView className="green">
         <div style={{textAlign: "center"}}>
           <h1>Victory!</h1>
           <p>Click anywhere to try again!</p>
@@ -157,19 +146,11 @@ function ScreenBoxView({status, board, onClickAt}) {
       </Board.ScreenView>
 
     case Status.Lost:
-      return <Board.ScreenView background={statusToBackground(status)}>
+      return <Board.ScreenView className="red">
         <div style={{textAlign: "center"}}>
           <h1>Defeat!</h1>
           <p>Click anywhere to try again!</p>
         </div>
       </Board.ScreenView>
-  }
-}
-
-function statusToBackground(status) {
-  switch (status) {
-    case Status.Won:  return "#a8db8f"
-    case Status.Lost: return "#db8f8f"
-    default:          return "#dcdcdc"
   }
 }
