@@ -1,8 +1,8 @@
 import React from "react"
-import * as Game from "../components/Game"
+import GameView from "../components/Game"
 
 export default function Layout() {
   return <>
-    <Game.View/>
+    <GameView/>
   </>
 }

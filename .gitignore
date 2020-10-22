@@ -1,9 +1,11 @@
 # Folders
-ignore/
-node_modules/
 .idea/
 .next/
 .vercel/
+build.
+ignore/
+node_modules/
+out/
 
 # Files
 .DS_Store

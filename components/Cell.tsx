@@ -1,4 +1,4 @@
-import React from "react"
+import {FC} from "react"
 
 // LOGIC ===========================================================================================
 // cell = {
@@ -6,25 +6,39 @@ import React from "react"
 //   status : Status.Open,
 // }
 
-export let Status = {
-  Open: "Open",
-  Closed: "Closed",
-  Done: "Done",
-  Failed: "Failed",
+export enum Status {
+  Open, Closed, Done, Failed
 }
 
-export let isOpen = (cell) => cell.status == Status.Open
+export type Cell = {
+  symbol: string
+  status: Status
+}
 
-export let isClosed = (cell) => cell.status == Status.Closed
+export type PredFn = (cell : Cell) => boolean
 
-export let isDone = (cell) => cell.status == Status.Done
+export let isOpen = (cell : Cell) : boolean =>
+  cell.status == Status.Open
 
-export let isFailed = (cell) => cell.status == Status.Failed
+export let isClosed = (cell : Cell) : boolean =>
+  cell.status == Status.Closed
 
-export let isBlocking = (cell) => isOpen(cell) || isFailed(cell)
+export let isDone = (cell : Cell) : boolean =>
+  cell.status == Status.Done
+
+export let isFailed = (cell : Cell) : boolean =>
+  cell.status == Status.Failed
+
+export let isBlocking = (cell : Cell) : boolean =>
+  isOpen(cell) || isFailed(cell) // R.anyPass([isOpen, isFail])
 
 // VIEW ============================================================================================
-export function View({cell, onClick}) {
+type CellViewProps = {
+  cell : Cell,
+  onClick : (event : React.MouseEvent) => void,
+}
+
+export let CellView : FC<CellViewProps> = ({cell, onClick}) => {
   let {status, symbol} = cell
   return <>
     <div className="cell" onClick={onClick}>
@@ -45,7 +59,7 @@ export function View({cell, onClick}) {
   </>
 }
 
-export function statusToBackground(status) {
+export function statusToBackground(status : Status) {
   switch (status) {
     case Status.Closed: return "darkgray"
     case Status.Open:   return "#dcdcdc"
