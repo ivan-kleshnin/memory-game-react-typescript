@@ -1,36 +1,36 @@
-import {FC} from "react"
+import React, {FC} from "react"
 
 // LOGIC ===========================================================================================
-// cell = {
-//   symbol : "A",
-//   status : Status.Open,
-// }
-
 export enum Status {
   Open, Closed, Done, Failed
 }
 
 export type Cell = {
-  symbol: string
-  status: Status
+  symbol : string
+  status : Status
 }
 
 export type PredFn = (cell : Cell) => boolean
 
-export let isOpen = (cell : Cell) : boolean =>
+export let isOpen = (cell : Cell) : boolean => (
   cell.status == Status.Open
+)
 
-export let isClosed = (cell : Cell) : boolean =>
+export let isClosed = (cell : Cell) : boolean => (
   cell.status == Status.Closed
+)
 
-export let isDone = (cell : Cell) : boolean =>
+export let isDone = (cell : Cell) : boolean => (
   cell.status == Status.Done
+)
 
-export let isFailed = (cell : Cell) : boolean =>
+export let isFailed = (cell : Cell) : boolean  => (
   cell.status == Status.Failed
+)
 
-export let isBlocking = (cell : Cell) : boolean =>
-  isOpen(cell) || isFailed(cell) // R.anyPass([isOpen, isFail])
+export let isBlocking = (cell : Cell) : boolean => (
+  isOpen(cell) || isFailed(cell)
+)
 
 // VIEW ============================================================================================
 type CellViewProps = {
@@ -59,7 +59,7 @@ export let CellView : FC<CellViewProps> = ({cell, onClick}) => {
   </>
 }
 
-export function statusToBackground(status : Status) {
+export let statusToBackground = (status : Status) : string => {
   switch (status) {
     case Status.Closed: return "darkgray"
     case Status.Open:   return "#dcdcdc"

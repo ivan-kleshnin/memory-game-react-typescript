@@ -4,14 +4,11 @@ import * as Cell from "./Cell"
 import * as Board from "./Board"
 
 // LOGIC ===========================================================================================
-enum Status {
-  Stopped,
-  Running,
-  Won,
-  Lost,
+export enum Status {
+  Stopped, Running, Won, Lost
 }
 
-type State = {
+export type State = {
   board : Board.Board
   secondsLeft : number
   status : Status
@@ -61,7 +58,7 @@ let nextSecond = (state : State) : State => (
 
 // VIEW ============================================================================================
 let GameView : FC = () => {
-  let [state, setState] = useState({
+  let [state, setState] = useState<State>({
     ...startGame(),
     status: Status.Stopped,
   })
@@ -126,8 +123,8 @@ let GameView : FC = () => {
 }
 
 type StatusLineViewProps = {
-  status : any
-  secondsLeft : any
+  status : Status
+  secondsLeft : number
 }
 
 let StatusLineView : FC<StatusLineViewProps> = ({status, secondsLeft}) => {
@@ -195,4 +192,4 @@ let statusToBackground = (status : Status) : string => {
   }
 }
 
-export default GameView
+export {GameView}

@@ -2,7 +2,7 @@
 .idea/
 .next/
 .vercel/
-build.
+build/
 ignore/
 node_modules/
 out/

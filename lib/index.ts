@@ -1,6 +1,5 @@
 import * as R from "rambda"
 
-// A[] -> boolean
 export let allEquals = <A> (xs : A[]) : boolean => {
   if (xs.length < 2) {
     return true
@@ -9,12 +8,10 @@ export let allEquals = <A> (xs : A[]) : boolean => {
   return R.all(R.equals(head), tail)
 }
 
-// number -> number -> number
 export let randomInt = (min : number) => (max : number) : number => {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
-// (number, number) -> A[] -> A[]
 export let swap = (i1 : number, i2 : number) => <A> (xs : A[]) => {
   let v1 = xs[i1]
   let v2 = xs[i2]
@@ -24,7 +21,6 @@ export let swap = (i1 : number, i2 : number) => <A> (xs : A[]) => {
   )(xs)
 }
 
-// A[] -> A[]
 export let shuffle = <A> (xs : A[]) => {
   let counter = xs.length
   while (counter > 0) {
