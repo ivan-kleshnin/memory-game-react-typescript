@@ -1,5 +1,5 @@
 import * as R from "rambda"
-import {FC, useEffect, useState} from "react"
+import * as React from "react"
 import * as Cell from "./Cell"
 import * as Board from "./Board"
 
@@ -57,8 +57,8 @@ let nextSecond = (state : State) : State => (
 )
 
 // VIEW ============================================================================================
-let GameView : FC = () => {
-  let [state, setState] = useState<State>({
+let GameView : React.FC = () => {
+  let [state, setState] = React.useState<State>({
     ...startGame(),
     status: Status.Stopped,
   })
@@ -79,7 +79,7 @@ let GameView : FC = () => {
   }
 
   // WIN/LOSE MECHANICS
-  useEffect(() => {
+  React.useEffect(() => {
     if (status == Status.Running) {
       if (hasWinningCond(state)) {
         return setState(setStatus(Status.Won))
@@ -90,7 +90,7 @@ let GameView : FC = () => {
     }
   }, [state])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (status == Status.Running) {
       if (Board.areOpensEqual(board)) {
         setState(succeedStep)
@@ -104,7 +104,7 @@ let GameView : FC = () => {
   }, [board])
 
   // TIMER
-  useEffect(() => {
+  React.useEffect(() => {
     let timer : ReturnType<typeof setInterval> | undefined = undefined
     if (status == Status.Running && !timer) {
       timer = setInterval(() => {
@@ -127,7 +127,7 @@ type StatusLineViewProps = {
   secondsLeft : number
 }
 
-let StatusLineView : FC<StatusLineViewProps> = ({status, secondsLeft}) => {
+let StatusLineView : React.FC<StatusLineViewProps> = ({status, secondsLeft}) => {
   return <>
     <div className="status-line">
       <div>{status == Status.Running ? ":)" : "Lets Go!"}</div>
@@ -153,7 +153,7 @@ type ScreenBoxViewProps = {
   onClickAt : (i : number) => void
 }
 
-let ScreenBoxView : FC<ScreenBoxViewProps> = ({status, board, onClickAt}) => {
+let ScreenBoxView : React.FC<ScreenBoxViewProps> = ({status, board, onClickAt}) => {
   switch (status) {
     case Status.Running:
       return <Board.BoardView board={board} onClickAt={onClickAt}/>

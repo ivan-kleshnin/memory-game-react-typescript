@@ -1,4 +1,4 @@
-import React, {FC} from "react"
+import * as React from "react"
 
 // LOGIC ===========================================================================================
 export enum Status {
@@ -38,7 +38,7 @@ type CellViewProps = {
   onClick : (event : React.MouseEvent) => void,
 }
 
-export let CellView : FC<CellViewProps> = ({cell, onClick}) => {
+export let CellView : React.FC<CellViewProps> = ({cell, onClick}) => {
   let {status, symbol} = cell
   return <>
     <div className="cell" onClick={onClick}>
